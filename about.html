@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+    }
+
+    nav {
+        padding: 5px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+            rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        z-index: 1;
+    }
+
+    nav .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    nav .logo img {
+        height: 50px;
+        width: auto;
+        margin-right: 10px;
+    }
+
+    nav .logo h1 {
+        font-size: 1.4rem;
+        background: linear-gradient(to right, #b927fc 0%, #2c64fc 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+    }
+
+    nav ul li {
+        margin-left: 1.5rem;
+        padding-top: 12px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #1741ab;
+        font-size: 110%;
+        font-weight: 500;
+        padding: 4px 8px;
+        border-radius: 5px;
+    }
+
+    nav ul li a:hover {
+        background-color: #e1e5e7;
+    }
+
+    .hamburger {
+        display: none;
+        cursor: pointer;
+    }
+
+    .hamburger .line {
+        width: 25px;
+        height: 1px;
+        background-color: #1f1f1f;
+        display: block;
+        margin: 7px auto;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-active {
+        transition: all 0.3s ease-in-out;
+        transition-delay: 0.6s;
+        transform: rotate(45deg);
+    }
+
+    .hamburger-active .line:nth-child(2) {
+        width: 0px;
+    }
+
+    .hamburger-active .line:nth-child(1),
+    .hamburger-active .line:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .hamburger-active .line:nth-child(1) {
+        transform: translateY(12px);
+    }
+
+    .hamburger-active .line:nth-child(3) {
+        transform: translateY(-5px) rotate(90deg);
+    }
+
+    .menubar {
+        position: absolute;
+        top: 0;
+        left: -60%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 60%;
+        height: 100vh;
+        padding: 20% 0;
+        background: rgba(255, 255, 255);
+        transition: all 0.5s ease-in;
+        z-index: 2;
+    }
+
+    .active {
+        left: 0;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+    .menubar ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .menubar ul li {
+        margin-bottom: 32px;
+    }
+
+    .menubar ul li a {
+        text-decoration: none;
+        color: #000;
+        font-size: 95%;
+        font-weight: 400;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .menubar ul li a:hover {
+        background-color: #f5f5f5;
+    }
+
+    @media screen and (max-width: 790px) {
+        .hamburger {
+            display: block;
+        }
+
+        nav ul {
+            display: none;
+        }
+    }
+
+    /* end */
+
+
+
+    /* heading */
+    .heading-section {
+        text-align: center;
+        /* padding: 60px 20px 30px; */
+    }
+
+    .heading-section h1 {
+        font-size: 36px;
+        font-weight: 800;
+        color: #2c3e50;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 12px;
+    }
+
+    .heading-section h1::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 4px;
+        background-color: #27ae60;
+        border-radius: 2px;
+    }
+
+    @media (max-width: 600px) {
+        .heading-section h1 {
+            font-size: 28px;
+        }
+    }
+
+    /* end */
+
+    /* section */
+    .section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .text-content {
+        flex: 1 1 55%;
+        font-size: 17px;
+        color: #333;
+        line-height: 1.6;
+        padding-left: 18px;
+    }
+
+    .text-content strong {
+        font-weight: bold;
+    }
+
+    .text-content a {
+        color: #6b8e23;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .image-box {
+        flex: 1 1 40%;
+    }
+
+    .image-box img {
+        width: 100%;
+        height: 100%;
+        max-height: 320px;
+        object-fit: cover;
+        border-radius: 20px;
+        display: block;
+        padding-right: 15px;
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            flex-direction: column;
+        }
+
+        .text-content,
+        .image-box {
+            flex: 1 1 100%;
+        }
+
+        .image-box img {
+            max-height: 280px;
+        }
+    }
+
+    /* second section */
+    .section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .text-content {
+        flex: 1 1 55%;
+        font-size: 17px;
+        color: #333;
+        line-height: 1.6;
+        padding-right: 15px;
+        padding-top: 15px;
+    }
+
+    .text-content strong {
+        font-weight: bold;
+    }
+
+    .text-content a {
+        color: #6b8e23;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .image-box {
+        flex: 1 1 40%;
+    }
+
+    .image-box img {
+        width: 100%;
+        height: 100%;
+        max-height: 320px;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+        padding-left: 15px;
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            flex-direction: column;
+        }
+
+        .text-content,
+        .image-box {
+            flex: 1 1 100%;
+        }
+
+        .image-box img {
+            max-height: 280px;
+        }
+    }
+
+    /* end */
+</style>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="mainlogo.png" alt="logo" />
+            <h1>DIGITAL MARKETING</h1>
+        </div>
+        <ul>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="about.html">About Us</a>
+            </li>
+            <li>
+                <a href="contactus.html">Contact Us</a>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </nav>
+    <div class="menubar">
+        <ul>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="about.html">About Us</a>
+            </li>
+            <li>
+                <a href="contactus.html">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <!-- end menubar -->
+    <!--  heading -->
+    <div class="heading-section">
+        <h1>Why choose GRKC as your Digital Marketing Agency</h1>
+    </div>
+    <!-- end -->
+    <!-- Section -->
+    <!-- Section -->
+    <div class="section">
+
+        <!-- 🔁 Image First (For responsive stacking) -->
+        <div class="image-box">
+            <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg" alt="Right Side Image">
+        </div>
+
+        <!-- Text Second -->
+        <div class="text-content">
+            <p>
+                Thrive Internet Marketing Agency is a dynamic, versatile and
+                <a href="#">full-service digital marketing agency</a> that doesn’t rely on smoke and mirrors to attract
+                new clients.
+                Instead, Thrive trusts its own search engine optimization (SEO) and marketing skills to drive new
+                customers to our website.
+            </p>
+            <p>
+                We’re not a static company. We don’t limit ourselves to specific industries. Thrive has the experience
+                and professionals to build a custom website and use multiple digital marketing services to assist any
+                size company in
+                <a href="#">any industry</a>.
+            </p>
+            <!-- <p>
+                So many other agencies rely on a one-size-fits-all approach, offering you the same cookie-cutter website
+                and strategies as your competitor down the street.
+            </p> -->
+        </div>
+
+    </div>
+    <!-- End Section -->
+
+    <!-- end section -->
+    <br>
+    <br>
+    <!-- <br> -->
+    <!-- 2section -->
+    <div class="section">
+
+        <!-- ✅ LEFT Text Content -->
+        <div class="text-content">
+            <p>
+                Thrive Internet Marketing Agency is a dynamic, versatile and
+                <a href="#">full-service digital marketing agency</a> that doesn’t rely on smoke and mirrors to attract
+                new clients.
+                Instead, Thrive trusts its own search engine optimization (SEO) and marketing skills to drive new
+                customers to our website.
+            </p>
+            <p>
+                We’re not a static company. We don’t limit ourselves to specific industries. Thrive has the experience
+                and professionals to build a custom website and use multiple digital marketing services to assist any
+                size company in
+                <a href="#">any industry</a>.
+            </p>
+            <!-- <p>
+                So many other agencies rely on a one-size-fits-all approach, offering you the same cookie-cutter website
+                and strategies as your competitor down the street.
+            </p> -->
+        </div>
+
+        <!-- ✅ RIGHT Image -->
+        <div class="image-box">
+            <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg" alt="Right Side Image">
+        </div>
+
+    </div>
+    <!-- another section -->
+    <div class="section">
+
+        <!-- 🔁 Image First (For responsive stacking) -->
+        <div class="image-box">
+            <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg" alt="Right Side Image">
+        </div>
+
+        <!-- Text Second -->
+        <div class="text-content">
+            <p>
+                Thrive Internet Marketing Agency is a dynamic, versatile and
+                <a href="#">full-service digital marketing agency</a> that doesn’t rely on smoke and mirrors to attract
+                new clients.
+                Instead, Thrive trusts its own search engine optimization (SEO) and marketing skills to drive new
+                customers to our website.
+            </p>
+            <p>
+                We’re not a static company. We don’t limit ourselves to specific industries. Thrive has the experience
+                and professionals to build a custom website and use multiple digital marketing services to assist any
+                size company in
+                <a href="#">any industry</a>.
+            </p>
+            <!-- <p>
+                So many other agencies rely on a one-size-fits-all approach, offering you the same cookie-cutter website
+                and strategies as your competitor down the street.
+            </p> -->
+        </div>
+
+    </div>
+    <!-- End Section -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- end -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="java.js"></script>
+</body>
+
+</html>
